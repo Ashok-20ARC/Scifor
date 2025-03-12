@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hospital Management System</title>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container">
+                <a href="{% url 'home' %}" class="logo">Hospital Management</a>
+                <ul class="nav-links">
+                    <li><a href="{% url 'doctor_list' %}">Doctors</a></li>
+                    <li><a href="{% url 'patient_list' %}">Patients</a></li>
+                    <li><a href="{% url 'appointment_list' %}">Appointments</a></li>
+                    <li><a href="{% url 'billing_list' %}">Billings</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
