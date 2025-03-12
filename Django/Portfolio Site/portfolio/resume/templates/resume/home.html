@@ -1,0 +1,28 @@
+{% extends 'resume/base.html' %}
+{% block content %}
+  <div class="profile-header">
+    <h1>{{ profile.name }}</h1>
+    <p>{{ profile.bio }}</p>
+    <p>Email : {{ profile.email }}</p>
+    <p>Phone : {{ profile.phone }}</p>
+  </div>
+  <hr>
+  <h2>Experience</h2>
+  <ul>
+    {% for exp in experiences %}
+    <li><strong>{{ exp.position }}</strong> at {{ exp.company }} ({{ exp.start_date }} - {% if exp.end_date %}{{ exp.end_date }}{% else %}Present{% endif %})</li>
+    <p>{{ exp.description }}</p>
+    {% endfor %}
+  </ul>
+  <hr>
+  <h2>Projects</h2>
+  <ul>
+    {% for project in projects %}
+      <li><strong>{{ project.title }}</strong>- {{ project.technologies }}</li>
+      <p>{{ project.description }}</p>
+      {% if project.link %}
+        <a href="{{ project.link }}" target="_blank">View Project</a>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock %}
