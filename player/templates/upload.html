@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Upload Song{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h2>Upload a Song</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Song Title Input -->
+        <label for="title" class="upload-label">Song Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter Song Title" class="upload-input" required>
+
+        <!-- Artist Name Input -->
+        <label for="artist" class="upload-label">Artist Name</label>
+        <input type="text" id="artist" name="artist" placeholder="Enter Artist Name" class="upload-input" required>
+
+        <!-- Movie Name (Optional) -->
+        <label for="movie_name" class="upload-label">Movie Name (Optional)</label>
+        <input type="text" id="movie_name" name="movie_name" placeholder="Enter Movie Name" class="upload-input">
+
+        <!-- Audio File Upload -->
+        <label for="audio_file" class="upload-label">Upload Audio File</label>
+        <input type="file" id="audio_file" name="audio_file" accept="audio/*" class="upload-file" required>
+
+        <!-- Cover Image Upload -->
+        <label for="cover_image" class="upload-label">Upload Cover Image</label>
+        <input type="file" id="cover_image" name="cover_image" accept="image/*" class="upload-file" required>
+
+        <!-- Submit Button -->
+        <button type="submit" class="upload-button">Upload</button>
+    </form>
+</div>
+{% endblock %}

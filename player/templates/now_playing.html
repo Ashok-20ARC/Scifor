@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Now Playing{% endblock %}
+
+{% block content %}
+<div class="cover-container">
+    {% if current_song %}
+        <img id="coverImage" class="cover-image" src="{{ current_song.cover_image.url }}" alt="Cover Image">
+    {% endif %}
+</div>
+
+<div class="player-card">
+    <div class="playlist">
+        <h2>Playlist</h2>
+        <ul id="playlist">
+            {% for song in playlist_songs %}
+                <li>
+                    <a href="{% url 'now_playing_with_id' song.id %}?source={{ source }}" 
+                        onclick="changeSong('{{ song.audio_file.url }}', '{{ song.cover_image.url }}', '{{ song.title }}', '{{ song.artist }}'); return false;">
+                        {{ song.title }} - {{ song.artist }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="now-playing">
+        {% if current_song %}
+            <h2>Now Playing</h2>
+            <h3 id="songTitle">{{ current_song.title }}</h3>
+            <h4 id="artistName">{{ current_song.artist }}</h4>
+            <audio id="audioPlayer" autoplay>
+                <source id="audioSource" src="{{ current_song.audio_file.url }}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="controls">
+                <button onclick="prevSong()">⏮ Previous</button>
+                <button onclick="togglePlayPause()" id="playPauseButton">▶ Play</button>
+                <button onclick="nextSong()">⏭ Next</button>
+            </div>
+        {% else %}
+            <p>No songs available.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    let songs = [
+        {% for song in playlist_songs %}
+            { id: "{{ song.id }}", title: "{{ song.title }}", artist: "{{ song.artist }}", cover: "{{ song.cover_image.url }}", audio: "{{ song.audio_file.url }}" },
+        {% endfor %}
+    ];
+    let currentSongIndex = songs.findIndex(s => s.id == "{{ current_song.id }}");
+    let audioPlayer = document.getElementById("audioPlayer");
+    let coverImage = document.getElementById("coverImage");
+    let songTitle = document.getElementById("songTitle");
+    let artistName = document.getElementById("artistName");
+    let playPauseButton = document.getElementById("playPauseButton");
+
+   
+
+    function loadSong(index) {
+        if (index < 0 || index >= songs.length) return;
+        let song = songs[index];
+        songTitle.innerText = song.title;
+        artistName.innerText = song.artist;
+        coverImage.src = song.cover;
+        audioPlayer.src = song.audio;
+        audioPlayer.play();
+        playPauseButton.innerText = "⏸ Pause";
+        currentSongIndex = index;
+    }
+
+    function nextSong() {
+        let newIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(newIndex);
+    }
+
+    function prevSong() {
+        let newIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(newIndex);
+    }
+
+    function togglePlayPause() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseButton.innerText = "⏸ Pause";
+        } else {
+            audioPlayer.pause();
+            playPauseButton.innerText = "▶ Play";
+        }
+    }
+
+    function changeSong(audio, cover, title, artist) {
+        audioPlayer.src = audio;
+        coverImage.src = cover;
+        songTitle.innerText = title;
+        artistName.innerText = artist;
+        audioPlayer.play();
+        playPauseButton.innerText = "⏸ Pause";
+    }
+
+    audioPlayer.addEventListener("ended", nextSong);
+</script>
+
+{% endblock %}
