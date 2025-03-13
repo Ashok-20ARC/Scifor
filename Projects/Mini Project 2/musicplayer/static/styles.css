@@ -1,0 +1,642 @@
+/* over all */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1000;
+}
+
+.nav-left{
+    font-size: 22px;
+    font-weight: bold;
+    color: violet;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+    margin-left: 15px;
+}
+
+.nav-right{
+    display: flex;
+    gap: 15px;
+}
+
+.nav-right a{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-right a:hover {
+    color: violet;
+    background: rgba(255,0,255,0.2);
+}
+
+.nav-right a:last-child{
+    margin-right: 20px;
+}
+
+/* home */
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.home-content {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    background: violet;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    color: violet;
+}
+
+/* playlist */
+.playlist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Playlist Wrapper */
+.playlist-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 900px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* User and Admin Songs */
+.user-songs, .admin-songs {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.user-songs::-webkit-scrollbar,
+.admin-songs::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-songs::-webkit-scrollbar-thumb,
+.admin-songs::-webkit-scrollbar-thumb {
+    background: violet;
+    border-radius: 4px;
+}
+
+/* Song List */
+.song-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Song Item */
+.song-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+    gap: 15px;
+}
+
+.song-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Song Title */
+.song-title {
+    flex: 2;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Truncate long song names */
+    max-width: 200px;
+}
+
+/* Artist Name */
+.song-artist {
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+    color: #bbb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* stylish buttons */
+.play-btn, .delete-btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Play Button */
+.play-btn {
+    background: linear-gradient(45deg, #4CAF50, #2E7D32);
+    color: white;
+}
+
+.play-btn:hover {
+    background: linear-gradient(45deg, #2E7D32, #4CAF50);
+}
+
+/* Delete Button */
+.delete-btn {
+    background: linear-gradient(45deg, #FF3D00, #D32F2F);
+    color: white;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #D32F2F, #FF3D00);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .playlist-wrapper {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .song-title, .song-artist {
+        font-size: 16px;
+        max-width: 120px;
+    }
+
+    .play-btn, .delete-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+/* cover image */
+.cover-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    transition: filter 0.5s ease-in-out;
+}
+
+/* play card */
+.player-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 25px rgba(144, 0, 255, 0.7); /* Glowing Effect */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid rgba(144, 0, 255, 0.8); /* Glowing Border */
+    animation: glow 1.5s infinite alternate;
+}
+
+/* Glowing Animation */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(144, 0, 255, 0.5);
+        border-color: rgba(144, 0, 255, 0.8);
+    }
+    to {
+        box-shadow: 0 0 30px rgba(144, 0, 255, 1);
+        border-color: rgba(255, 0, 255, 1);
+    }
+}
+
+/* playlist scrollbar */
+.playlist {
+    width: 40%;
+    padding: 10px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.playlist::-webkit-scrollbar, .now-playing::-webkit-scrollbar {
+    width: 8px;
+}
+
+.playlist::-webkit-scrollbar-thumb, .now-playing::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #6a00ff, #ff00ff);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+}
+
+.playlist::-webkit-scrollbar-track, .now-playing::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/*  Playlist Section  */
+.playlist {
+    width: 40%;
+    padding: 10px;
+    text-align: left;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.playlist ul li {
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 1px solid violet;
+}
+
+.playlist ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.playlist ul li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* now playing */
+.now-playing {
+    width: 55%;
+    text-align: center;
+}
+
+/* controls */
+.controls {
+    margin-top: 15px;
+}
+
+.controls button {
+    padding: 12px 18px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, #6a00ff, #ff00ff);
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+}
+
+.controls button:hover {
+    background: linear-gradient(45deg, #ff00ff, #6a00ff);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 1);
+}
+
+/* responsive*/
+@media (max-width: 768px) {
+    .player-card {
+        flex-direction: column;
+        width: 90%;
+        padding: 15px;
+    }
+
+    .playlist, .now-playing {
+        width: 100%;
+        text-align: center;
+    }
+
+    .controls button {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+
+
+
+
+/* Upload Page Styling */
+.upload-container {
+    font-family: sans-serif;
+    width: 400px;
+    margin: 100px auto;
+    background: rgba(0, 0, 0, 0.8); /* Dark semi-transparent box */
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.upload-container h2 {
+    color: violet;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.upload-label {
+    display: block;
+    color: #ccc;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.upload-input, .upload-file {
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: blueviolet;
+    outline: none;
+}
+
+.upload-input::placeholder {
+    color: #aaa;
+}
+
+.upload-file {
+    cursor: pointer;
+    color: black;
+    background: blueviolet;
+}
+
+.upload-button {
+    width: 100%;
+    background: linear-gradient(45deg, #a64ac9, #ff679f);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.upload-button:hover {
+    background: linear-gradient(45deg, #ff679f, #a64ac9);
+    box-shadow: 0 0 10px #ff679f;
+}
+
+/* Responsive Design */
+
+/* Tablets & Small Screens */
+@media (max-width: 768px) {
+    .upload-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .upload-container h2 {
+        font-size: 22px;
+    }
+
+    .upload-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .upload-container {
+        width: 95%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+
+    .upload-container h2 {
+        font-size: 20px;
+    }
+
+    .upload-input, .upload-file {
+        padding: 8px;
+    }
+
+    .upload-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+.login-container, .register-container {
+    width: 400px;
+    margin: 100px auto;
+    background: rgba(0, 0, 0, 0.85); /* Dark transparent background */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+}
+
+.login-container h2, .register-container h2 {
+    color: violet;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Input Fields */
+.login-input, .input-group input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 5px;
+}
+
+.login-input::placeholder, .input-group input::placeholder {
+    color: #aaa;
+}
+
+.login-input:focus, .input-group input:focus {
+    background: #333;
+    box-shadow: 0 0 10px #ff679f;
+}
+
+/* Buttons */
+.login-button, .register-btn {
+    width: 100%;
+    background: linear-gradient(45deg, #a64ac9, #ff679f);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.login-button:hover, .register-btn:hover {
+    background: linear-gradient(45deg, #ff679f, #a64ac9);
+    box-shadow: 0 0 10px #ff679f;
+}
+
+/* Messages */
+.message-list, .register-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.message, .register-container ul li {
+    background: #ff679f;
+    color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+/* Links */
+.register-link, .login-link {
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.register-link a, .login-link a {
+    color: #ff679f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+
+/* Tablets & Small Screens */
+@media (max-width: 768px) {
+    .login-container, .register-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .login-container h2, .register-container h2 {
+        font-size: 22px;
+    }
+
+    .login-button, .register-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .login-container, .register-container {
+        width: 95%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+
+    .login-container h2, .register-container h2 {
+        font-size: 20px;
+    }
+
+    .login-input, .input-group input {
+        padding: 10px;
+    }
+
+    .login-button, .register-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
