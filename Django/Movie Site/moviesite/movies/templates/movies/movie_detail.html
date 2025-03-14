@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} - Movie Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="movie-detail-container">
+        <div class="movie-poster">
+            <img src="{{ movie.thumbnail.url }}" alt="{{ movie.title }}">
+        </div>
+        <div class="movie-info">
+            <h1>{{ movie.title }}</h1>
+            <p class="release-date"><strong>Release Date:</strong> {{ movie.release_date }}</p>
+            <p class="genre"><strong>Genre:</strong>{{ movie.genre }}</p>
+
+            <div class="rating">
+                <strong>Rating:</strong>
+                <span class="stars">
+                    {% for _ in "x"|rjust:movie.rating %}
+                        <i class="fas fa-star">⭐</i>
+                    {% endfor %}
+                </span>
+
+                <span class="rating-score">({{ movie.rating }}/10)</span>
+            </div>
+            <p class="description"><strong>Description:</strong>{{ movie.description }}</p>
+
+            {% if movie.video_file %}
+            <div class="video-container">
+                <iframe src="{{ movie.video_file.url }}" width="100%" height="400px" title="{{ movie.title }} Trailer"  frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+            {% else %}
+            <p class="no-video">No Video available for this movie.</p>
+            {% endif %}
+
+            <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

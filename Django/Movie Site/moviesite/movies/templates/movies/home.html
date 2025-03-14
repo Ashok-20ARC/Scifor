@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Movie Site</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <h1>Movie List</h1>
+        <div class="movie-container">
+            {% for movie in movies %}
+                <div class="movie-card">
+                    <a href="{% url 'movie_detail' movie.id %}">
+                        <img src="{{ movie.thumbnail.url }}" alt="{{ movie.title }}">
+                        <h3>{{ movie.title }}</h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
