@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <section class="laptop-detail">
+        <img src="{{ laptop.image.url }}" alt="{{ laptop.name }}">
+        <div class="laptop-info">
+            <h1>{{ laptop.name }}</h1>
+            <h3>Brand: {{ laptop.brand }}</h3>
+            <p>{{ laptop.description }}</p>
+            <h2>${{ laptop.price }}</h2>
+            <a href="{% url 'add_to_cart' laptop.id %}">
+                <button>Add to Cart</button>
+            </a>
+        </div>
+    </section>
+    <br>
+    <h2>See also </h2>
+    <div class="laptop-list">
+        {% for laptop in laptops %}
+        <div class="laptop-card">
+            <a href="{% url 'laptop_detail' laptop.id %}">
+                <img src="{{ laptop.image.url }}" alt="{{ laptop.name }}">
+                <h3>{{ laptop.name }}</h3>
+                <p class="brand">{{ laptop.brand }}</p>
+                <p class="price">${{ laptop.price }}</p>
+            </a>
+            <a href="{% url 'add_to_cart' laptop.id %}">
+                <button>Add to Cart</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

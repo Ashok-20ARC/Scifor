@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <section class="hero">
+        <h1>Find Your Perfect Laptop here</h1>
+        <p>Shop the latest laptops with great deals and Order Anywhere...</p>
+        <a href="{% url 'shop' %}"><button>Shop Now</button></a>
+    </section>
+
+    <section class="categories">
+        <h2>Brands</h2>
+        <div class="category-list">
+            {% for brand in brands %}
+                <a href="{% url 'brand_products' brand.id %}"><div class="category">{{ brand.name }}</div></a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="laptops">
+        <h2>Trending Laptops</h2>
+        <div class="laptop-list">
+            {% for laptop in laptops %}
+            <div class="laptop-card">
+                <a href="{% url 'laptop_detail' laptop.id %}">
+                    <img src="{{ laptop.image.url }}" alt="{{ laptop.name }}">
+                    <h3>{{ laptop.name }}</h3>
+                    <p>{{ laptop.brand }}</p>
+                    <p>${{ laptop.price }}</p>
+                </a>
+                <a href="{% url 'add_to_cart' laptop.id %}">
+                    <button>Add to Cart</button>
+                </a>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+

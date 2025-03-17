@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <h2 style="color: orangered;">Order Summary</h2>
+    {% for item in items %}
+        <h3>laptop : {{ item.laptop }}</h3><br>
+        <h2>Quantity :{{ item.quantity }}</h2>
+    {% endfor %}
+    <br><p><b>Total Amount: ${{ total }}</b></p>
+    <br>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" style="height: 100px; border-radius: 10px;border: 1px solid brown; box-shadow: 5px 10px 6px rgba(233, 78, 0, 0.5);;">
+        {{ form.render }}
+        <h1>Place Order</h1>
+    </form>
+{% endblock %}
