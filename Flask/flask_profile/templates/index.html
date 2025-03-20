@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="home">
+    <h1>Hello, I'm Ashok!</h1>
+    <p>I am a Python Developer and Django expert.</p>
+    <img src="{{ url_for('static',filename='images/profile.jpg') }}" alt="Profile Picture">
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I have experience in Python, Django, Flask, and REST APIs. <br> Currently working as a Python Developer Intern.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: ashok20akc@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/Ashok-ARC20">github.com/Ashok-ARC20</a></p>
+</section>
+{% endblock %}
